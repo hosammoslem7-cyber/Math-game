@@ -1,0 +1,1 @@
+      cout<<" Questions ["<<i<<"/"<<num_of_questions<<"]";

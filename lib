@@ -1,0 +1,573 @@
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+
+int readnumber()
+{
+    int number;
+    cin >> number;
+    return number;
+}
+enum enP_or_Not
+{
+    perfect = 1
+    Notperfect = 2
+};
+int sum = 0;
+
+enP_or_Not check(int num)
+{
+    int M = round(num / 2);
+    for (int i = 1; i <= M; i++)
+    {
+        if (num % i == 0)
+            sum += i;
+    }
+    if (sum == num)
+        return enP_or_Not::perfect;
+    else
+        return enP_or_Not::Notperfect;
+}
+
+
+void print(int number)
+{
+         
+
+    for (int i = 0; i < 10; i++)
+    {
+        int numofdigits = 0;
+        numofdigits =check( i, number) ;
+        if (numofdigits > 0)
+           {
+cout << "digits " << i << " is " << numofdigits << "\n";
+            
+           } 
+    }
+}
+
+int check(int i,int number)
+{
+  
+    int sum = 0;
+
+    for (; number != 0; )
+    {
+
+        int x = number % 10;
+        if (x == i)
+            sum += 1;
+        number /= 10;
+    }
+    return sum;
+}
+int reverse(int num)
+{
+    int number = 0;
+    for (; num != 0;)
+    {
+        int x = num % 10;
+
+        number = number * 10 + x;
+        num /= 10;
+    }
+    return number;
+}
+void print(int num)
+{
+    for (int k = 1; k <= num; k++)
+    {
+        int sum = 0, counte = 0;
+        cout << " key " << k << " ";
+        for (int i = 1; i <= 16; i++)
+        {
+
+            cout << char(random(65, 90));
+            sum += 1;
+            if (sum % 4 == 0 && sum != 16)
+            {
+                cout << "-";
+            }
+        }
+        cout << "\n";
+    }
+
+
+int random(int from, int to)
+{
+    int randnum = rand() % (to - from + 1) + from;
+    return randnum;
+}
+enum enrandom{capital_letter=1,small_letter,special_char,digit};
+
+char print_char(enrandom chartype)
+{
+    switch (chartype)
+    {
+    case enrandom::capital_letter:
+    {
+        return char(random(65, 90));
+        break;
+    }
+    case enrandom::small_letter:
+    {
+        return char(random(97, 122));
+        break;
+    }
+    case enrandom::special_char:
+    {
+        return char(random(33, 47));
+        break;
+    }
+
+    case enrandom::digit:
+    {
+        return char(random(48, 57));
+        break;
+    }
+    }
+}
+
+string generateword(enrandom chartype,int length)
+{
+    string word="";
+    for(int i=1;i<=length;i++)
+    {
+        word+=print_char(enrandom::capital_letter);
+    }
+    return word;
+}
+string generate_key()
+{
+    string key="";
+    key+=generateword(enrandom::capital_letter,4)+'-';
+     key+=generateword(enrandom::capital_letter,4)+'-'; 
+     key+=generateword(enrandom::capital_letter,4)+'-';
+     key+=generateword(enrandom::capital_letter,4);
+     return key;
+}
+void gen_num_of_keys(int num_of_keys)
+{
+    for (int i = 1; i <= num_of_keys; i++)
+    {
+    }
+}
+void checkmin(int *arr1, int arrlength)
+{
+
+    int minnum = arr[0];
+    for (int i = 0; i < arrlength; i++)
+    {
+        if (minnum > arr[i])
+        {
+            minnum = arr[i];
+        }
+    }
+    cout << "\n"
+         << minnum << "\n";
+}
+void average(int *arr1, int &arrlength)
+{
+cout<<"\n the average is "<<float(sumelements(arr,arrlength)/arrlength)<<"\n";
+}
+int sumelements(int *arr1, int &arrlength)
+{
+    int sum = 0;
+    for (int i = 0; i < arrlength; i++)
+    {
+        sum += arr[i];
+    }
+   return sum;
+}
+void check(int *arr1, int arrlength)
+{
+    int sum = 0;
+    cout << "  enter num of check\n";
+    int numberofcheck = 0;
+    cin >> numberofcheck;
+    for (int i = 0; i < arrlength; i++)
+    {
+        if (numberofcheck == arr[i])
+            sum++;
+    }
+    cout << numberofcheck << " is repeated " << sum << " time (s)";
+}
+void check(int *arr1, int arrlength, int *arr2, int &arr2length)
+{
+    int counter = 0;
+    for (int i = 0; i < arrlength; i++)
+    {
+        if (checkprime(arr1[i]) == enP_or_Not::prime)
+        {
+            arr2[counter] = arr1[i];
+            counter++;
+        }
+       
+    }
+     arr2length = --counter;
+}
+enP_or_Not checkprime(int num)
+{
+    int M = (num / 2);
+    for (int k = 2; k <= M; k++)
+    {
+        if ((num % k) == 0)
+        {
+            return enP_or_Not::Notprime;
+        }
+        return enP_or_Not::prime;
+    }
+}
+void sumarr(int *arr1, int arrlength, int *arr2, int *arr3)
+{
+    for (int i = 0; i < arrlength; i++)
+    {
+        arr3[i] = arr2[i] + arr1[i];
+    }
+}
+enum enP_or_Not
+{
+    prime = 1,
+    Notprime = 2
+};
+
+void enterelements_of_arr2(int *arr1, int arrlength,int *arr2)
+{
+
+
+    for (int i = 0; i <arrlength; i++)
+    {
+
+        arr2[i]=arr1[i];
+    }
+}
+void swap(int &a,int&b)
+{
+    int temp=0;
+    temp=a;
+    a=b;
+    b=temp;
+}
+int findposition(int *arr1, int arrlength, int num_for_check)
+{
+
+    for (int i = 0; i < arrlength; i++)
+    {
+
+        if (num_for_check == arr1[i])
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+bool check(int numposition)
+{
+    if (numposition == -1)
+    {
+        return false;
+    }
+    else
+        return true;
+}
+
+void enternums(int *arr, int &arrlength)
+{
+    bool addmore = true;
+    do
+    {
+        cout << "enter  elements \n";
+
+        addarrayelements(arr, arrlength, readnumber());
+        cout << " do you want enter another elements \n";
+        cin >> addmore;
+    } while (addmore);
+}
+
+bool isnumberinarray(int *arr, int arrlength, int *arr2,int &num)
+{
+    if( findposition(arr, arrlength,arr2,num)==-1)
+    {
+        return true;
+    }
+    else
+        return false;
+
+}
+int findposition(int *arr, int arrlength,int *arr2,int& num)
+{
+
+    for (int i = 0; i < arrlength; i++)
+    {
+
+        if (num== arr2[i])
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+bool ispalindrome(int *arr, int &arrlength)
+{
+    for(int i=0;i,arrlength;i++)
+    {
+        if(arr[i]!=arr[arrlength-1])
+        return false;
+    }
+    return true;
+}
+
+enP_or_Not checkprime(int num)
+{
+    int M = (num / 2);
+    for (int k = 2; k <= M; k++)
+    {
+        if ((num % k) == 0)
+        {
+            return enP_or_Not::Notprime;
+        } 
+    }
+    return enP_or_Not::prime;
+}
+
+int random(int from, int to)
+{
+    int randnum = rand() % (to - from + 1) + from;
+    return randnum;
+}
+
+enum enP_or_Not
+{
+    prime = 1,
+    Notprime = 2
+};
+
+void addarrayelements(int *arr, int num, int &arr2length)
+{
+    arr2length++;
+    arr[arr2length - 1] = num;
+}
+
+void enterelements_of_arr(int *arr, int &arrlength, int *arr2, int arr2length)
+{
+    for (int i = 0; i < arrlength; i++)
+    {
+        arr[i] = random(-100, 100);
+    }
+}
+
+void copywithAddarray(int *arr, int &arrlength, int *arr2, int &arr2length)
+{
+    int count = 0;
+    for (int i = 0; i < arrlength; i++)
+    {
+        if ((arr[i] < 0))
+
+        {
+            count++;
+        }
+    }
+    cout << count;
+}
+
+void printorigelements_of_arr(int *arr, int &arrlength)
+{
+    cout << " array elements are ";
+    for (int i = 0; i < arrlength; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
+}
+
+enum ench
+{
+    no = 0,
+    yes = 1
+};
+
+int fraction(float num)
+{
+    return num - int(num);
+}
+
+int myfloor(float num)
+{
+
+    int intpart = int(num);
+    if (fraction(num) > 0)
+    {
+        if (num > 0)
+        {
+
+            return intpart += 1;
+        }
+        else
+        {
+            return intpart;
+        }
+    }
+    else
+        return intpart;
+}
+void writeFile(string FileName)
+{
+    fstream MyFile;
+    MyFile.open(FileName, ios::out);
+    if (MyFile.is_open())
+    {
+        MyFile<<"Ahmed\n";
+        MyFile<<"Ali\n";
+        MyFile<<"Mohammed\n";
+        MyFile<<"Ali\n";
+        MyFile<<"shadi\n";
+    }
+    MyFile.close();
+}
+void loadDataFromFileToVector(string FileName, vector<string> &vFile)
+{
+    fstream MyFile;
+    MyFile.open(FileName, ios::in);
+    if (MyFile.is_open())
+    {
+        string line;
+        while (getline(MyFile, line))
+        {
+            vFile.push_back(line);
+        }
+        MyFile.close();
+    }
+}
+void AddRecord(string FileName, string record)
+{
+
+    vector<string> vFile;
+    loadDataFromFileToVector(FileName, vFile);
+    for (string &line : vFile)
+    {
+        if (line == record)
+        {
+            line = "Omar";
+        }
+    }
+    saveToVector(FileName, vFile);
+}
+void printFile(string FileName)
+{
+    fstream MyFile;
+    MyFile.open(FileName, ios::in);
+    if (MyFile.is_open())
+    {
+        string Line;
+        while (getline(MyFile, Line))
+        {
+            cout << Line << "\n";
+        }
+
+        MyFile.close();
+    }
+}
+void saveToVector(string FileName, vector<string> &vFile)
+{
+    fstream MyFile;
+    MyFile.open(FileName, ios::out);
+    if (MyFile.is_open())
+    {
+        string Line;
+        for (string &Line : vFile)
+        {
+            if(Line!="")
+            MyFile << Line << "\n";
+        }
+        MyFile.close();
+    }
+}
+  int arr1[3][3] = {{0, 0, 8},
+                           {0, 0, 6},
+                           {0, 0, 9}};
+
+                           
+  void Mulmatrix(int (*arr1)[3], int (*arr2)[3], int row, int col, int (*Mularr)[3])
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            Mularr[i][j] = ((arr1[i][j]) * (arr2[i][j]));
+        }
+    }
+}int checkmax(int (*arr1)[3], int row, int col)
+{
+    int max = arr1[0][0];
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (max < arr1[i][j])
+            {
+                max = arr1[i][j];
+            }
+        }
+    }
+    cout << " max num is " << max;
+}
+int checkmin(int (*arr1)[3], int row, int col)
+{
+    int min = arr1[0][0];
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (min > arr1[i][j])
+            {
+                min = arr1[i][j];
+            }
+        }
+    }
+    cout << " min num is " << min << "\n";
+}int SumMatrix(int (*arr)[3], int row, int col)
+{
+    int sum = 0;
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            sum += arr[i][j];
+        }
+    }
+    //  cout << " Sum is " << sum << "\n";
+    return sum;
+}
+string isMatrixpalindrome(int (*arr)[3], int row, int col)
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            if (j == 0)
+            {
+                if (arr[i][j] != arr[i][j + 2])
+                {
+                    return " Not palindrome\n";
+                }
+            }
+        }
+    }
+    return "palindrome\n";
+}
+void fibonanshebyloop()
+{
+    int a = 1, b = 1, r = 0,n;
+    cin>>n;
+    cout<<a<<"  "<<b<<"  ";
+    for (int i = 1; i <= n; i++)
+    {
+        r = a + b;
+        cout << r << "  ";
+        b = a;
+        a = r;
+    }
+}
